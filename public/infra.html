@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f7f8fb">
+  <title>Agent Infra Radar</title>
+  <link rel="stylesheet" href="/infra.css">
+  <script type="module" src="/infra.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Agent Infra Radar home"><span class="brand-mark" aria-hidden="true"><i></i></span><span>Agent Infra <strong>Radar</strong></span></a>
+    <div class="topbar-right"><span class="private-label"><span aria-hidden="true">●</span> Your private search</span><a class="legacy-link" href="/devrel">DevRel search <span aria-hidden="true">↗</span></a></div>
+  </header>
+  <main>
+    <section class="hero" aria-labelledby="page-title">
+      <div><p class="eyebrow"><span class="pulse-mark" aria-hidden="true"></span> ENGINEERING, WITH A PURPOSE</p><h1 id="page-title">Your next big build.</h1><p class="hero-description">Agent infrastructure roles worth a closer look.<br class="desktop-break"> Your criteria. Verified listings. A useful email when one fits.</p></div>
+      <div class="hero-actions"><button type="button" id="settings-open" class="button button-secondary"><span aria-hidden="true">⚙</span> Search settings</button><button type="button" id="scan" class="button button-primary"><span aria-hidden="true">⌕</span> Search now</button></div>
+    </section>
+    <div id="error-banner" class="error-banner" role="alert" hidden></div>
+    <section class="search-summary" aria-label="Your search criteria"><span class="summary-label">LOOKING FOR</span><div id="criteria-chips" class="criteria-chips"><span class="criterion">Agent infrastructure</span><span class="criterion">$150k+ / year</span><span class="criterion">US remote or San Francisco</span></div><button type="button" id="criteria-edit" class="text-button">Edit criteria <span aria-hidden="true">↗</span></button></section>
+    <section class="overview" aria-label="Search overview">
+      <div class="metric"><span class="metric-icon match-icon" aria-hidden="true">↗</span><div><strong id="matches-count">—</strong><span>matching roles</span></div><span class="metric-note">Meet your search criteria</span></div>
+      <div class="metric"><span class="metric-icon review-icon" aria-hidden="true">≋</span><div><strong id="review-count">—</strong><span>need a closer look</span></div><span class="metric-note">Missing or uncertain details</span></div>
+      <div class="metric"><span class="metric-icon email-icon" aria-hidden="true">✉</span><div><strong id="sent-count">—</strong><span>digests sent</span></div><span class="metric-note" id="email-metric-note">Up to 10 best matches per email</span></div>
+    </section>
+    <section class="activity-strip" aria-label="Search and email status">
+      <div class="activity-main"><span id="run-dot" class="status-dot" aria-hidden="true"></span><div><strong id="run-title">Loading your search…</strong><p id="run-summary">Connecting to your saved results.</p></div></div>
+      <button type="button" id="history-toggle" class="text-button" aria-expanded="false" aria-controls="history">Search history <span aria-hidden="true">↓</span></button>
+    </section>
+    <section id="history" class="history" aria-label="Recent searches" hidden></section>
+    <section class="email-strip" aria-label="Email delivery">
+      <div class="email-status"><span class="mail-outline" aria-hidden="true">✉</span><div><strong id="email-title">Your job digest, through Resend</strong><p id="email-description">Checking connector status…</p></div></div>
+      <div class="email-actions"><button type="button" id="preview-email" class="text-button">Preview digest</button><button type="button" id="send-email" class="button button-small button-secondary" disabled>Send queued matches</button></div>
+    </section>
+    <section class="opportunities" aria-labelledby="opportunities-title">
+      <div class="section-heading"><div><h2 id="opportunities-title">On your radar</h2><p id="results-description">A shortlist built around the work you want to do.</p></div><label class="sort-control">Sort by <select id="sort"><option value="newest">Recently found</option><option value="salary">Highest salary</option><option value="company">Company A–Z</option></select></label></div>
+      <div class="list-controls"><nav class="tabs" aria-label="Job views"><button type="button" class="selected" data-view="match" aria-pressed="true">Matches <span>0</span></button><button type="button" data-view="review" aria-pressed="false">Needs review <span>0</span></button><button type="button" data-view="saved" aria-pressed="false">Saved <span>0</span></button><button type="button" data-view="applied" aria-pressed="false">Applied <span>0</span></button><button type="button" data-view="excluded" aria-pressed="false">Excluded <span>0</span></button><button type="button" data-view="hidden" aria-pressed="false">Hidden <span>0</span></button></nav><label class="search-field"><span aria-hidden="true">⌕</span><input type="search" id="query" placeholder="Search roles or companies" aria-label="Search roles or companies"></label></div>
+      <div class="list-meta"><span id="result-count">Loading roles…</span><span id="profile-note">Matches refer to your search criteria.</span></div>
+      <section id="jobs" class="job-grid" aria-label="Job opportunities" aria-live="polite"></section>
+      <section id="empty" class="empty-state" hidden><span class="empty-radar" aria-hidden="true"><i></i></span><p class="eyebrow" id="empty-eyebrow">A FRESH START</p><h3 id="empty-title">Your next opportunity is out there.</h3><p id="empty-description">Run your first search to check company career pages for roles that meet your criteria.</p><button type="button" id="empty-action" class="button button-primary">Run first search <span aria-hidden="true">↗</span></button></section>
+    </section>
+    <footer><span id="schedule-description">Checking schedule…</span><span>Built on Sprites <span class="footer-dot">·</span> Email by Resend <span class="footer-dot">·</span> Applications stay in your hands.</span></footer>
+  </main>
+  <dialog id="settings-dialog" class="settings-dialog" aria-labelledby="settings-title">
+    <div class="dialog-top"><div><p class="eyebrow">MAKE IT YOURS</p><h2 id="settings-title">Search settings</h2><p>Your next search and email alerts use these criteria.</p></div><button type="button" id="settings-close" class="icon-button" aria-label="Close settings">×</button></div>
+    <form id="settings-form">
+      <div class="settings-body">
+        <section class="settings-section"><div class="settings-section-heading"><span class="section-number">01</span><div><h3>The work</h3><p>Define the roles you want on your radar.</p></div></div><div class="fields-grid">
+          <label class="field wide">Search name<input name="focus" type="text" required maxlength="250" placeholder="Agent infrastructure software engineering"><span class="field-help">Use keywords below to refine the roles.</span></label>
+          <label class="field">Minimum annual salary (USD)<div class="input-prefix"><span>$</span><input name="min_salary" type="number" min="0" max="2000000" step="1000" required></div></label>
+          <label class="field">Salary rule<select name="salary_rule"><option value="minimum">Published minimum must meet my target</option><option value="range_reaches">Published range can reach my target</option></select></label>
+          <label class="check-field wide"><input type="checkbox" name="remote_allowed"><span>Include remote roles</span></label>
+          <label class="field">Remote region<input name="remote_region" type="text" maxlength="150" placeholder="United States"></label>
+          <label class="field">Office locations<input name="locations" type="text" maxlength="1000" placeholder="San Francisco"><span class="field-help">Separate locations with commas.</span></label>
+          <label class="field wide">Include keywords<textarea name="include_keywords" rows="3" maxlength="5000" placeholder="agent infrastructure, agents, orchestration, runtime"></textarea><span class="field-help">A role must contain at least one of these in its title or duties. Separate keywords with commas or new lines.</span></label>
+          <label class="field wide">Exclude keywords<textarea name="exclude_keywords" rows="2" maxlength="5000" placeholder="Optional exclusions"></textarea><span class="field-help">Exclude roles whose titles contain these keywords. Separate keywords with commas or new lines.</span></label>
+        </div></section>
+        <section class="settings-section"><div class="settings-section-heading"><span class="section-number">02</span><div><h3>Your experience</h3><p>Help rank the roles most relevant to your experience.</p></div></div><label class="field">Profile or résumé summary<textarea name="profile_text" rows="5" maxlength="20000" placeholder="Your engineering experience, projects, languages, and strengths…"></textarea><span class="field-help">Optional. Shared technical skills help rank your top 10, followed by agent infrastructure relevance and your keywords. This does not assess whether you meet every qualification.</span></label></section>
+        <section class="settings-section"><div class="settings-section-heading"><span class="section-number">03</span><div><h3>The useful email</h3><p>Your 10 best new matches, with application links and reasons to consider each. A link opens the rest in the app.</p></div></div><div class="fields-grid">
+          <label class="check-field wide"><input type="checkbox" name="email_enabled"><span>Email new matching roles in one digest</span></label>
+          <label class="field">Send to<input name="email_to" type="email" maxlength="320" placeholder="you@example.com" autocomplete="email"></label>
+          <label class="field">Send from<input name="email_from" type="text" maxlength="400" placeholder="Radar &lt;jobs@yourdomain.com&gt;"><span class="field-help">Use a sender allowed by your Resend account.</span></label>
+          <label class="field wide">Resend connector base URL<input name="connector_base" type="url" maxlength="2000" placeholder="Automatic discovery"><span class="field-help">Leave blank to discover the connector. The app does not need a Resend API key.</span></label>
+        </div><div class="connection-controls"><div id="settings-connection" class="connection-note">Checking connector status…</div><button type="button" id="check-connection" class="button button-secondary button-small">Check connection</button></div></section>
+        <section class="settings-section"><div class="settings-section-heading"><span class="section-number">04</span><div><h3>On your schedule</h3><p>A daily search keeps the list fresh.</p></div></div><div class="fields-grid">
+          <label class="check-field wide"><input type="checkbox" name="schedule_enabled"><span>Enable the daily search</span></label>
+          <div class="fixed-schedule wide"><span class="fixed-schedule-icon" aria-hidden="true">◷</span><div><strong>Daily at 4 PM Pacific</strong><span>The scheduler wakes the Sprite to run your search.</span></div></div>
+        </div><p id="settings-schedule-note" class="field-help"></p></section>
+        <section class="settings-section"><div class="settings-section-heading"><span class="section-number">05</span><div><h3>Company career pages</h3><p>Choose the official job boards to check each time.</p></div></div><div id="source-list" class="source-list"></div><button type="button" id="add-source" class="button button-secondary button-small">+ Add a source</button><p class="field-help">A source slug is the company identifier in its Greenhouse, Lever, or Ashby job-board URL. Failed sources remain visible in search history.</p></section>
+      </div>
+      <div class="dialog-footer"><p id="settings-error" class="form-error" role="alert" hidden></p><span id="settings-save-note">Saved on your Sprite.</span><button type="button" id="settings-cancel" class="button button-secondary">Cancel</button><button type="submit" id="settings-save" class="button button-primary">Save settings</button></div>
+    </form>
+  </dialog>
+  <dialog id="preview-dialog" class="preview-dialog" aria-labelledby="preview-title"><div class="dialog-top"><div><p class="eyebrow">BEFORE IT HITS YOUR INBOX</p><h2 id="preview-title">Job digest preview</h2><p id="preview-note">Preview only. No email has been sent.</p></div><button type="button" id="preview-close" class="icon-button" aria-label="Close email preview">×</button></div><div class="email-preview"><span class="preview-label">SUBJECT</span><h3 id="preview-subject"></h3><hr><pre id="preview-body"></pre></div><div class="dialog-footer"><span>No email is sent by opening a preview.</span><button type="button" id="preview-done" class="button button-primary">Done</button></div></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>

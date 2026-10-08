@@ -1,0 +1,16 @@
+[
+  {"provider":"ashby","slug":"langchain","company":"LangChain","enabled":true},
+  {"provider":"ashby","slug":"openai","company":"OpenAI","enabled":true},
+  {"provider":"greenhouse","slug":"anthropic","company":"Anthropic","enabled":true},
+  {"provider":"ashby","slug":"modal","company":"Modal","enabled":true},
+  {"provider":"ashby","slug":"baseten","company":"Baseten","enabled":true},
+  {"provider":"ashby","slug":"runloop","company":"Runloop","enabled":true},
+  {"provider":"ashby","slug":"e2b","company":"E2B","enabled":true},
+  {"provider":"ashby","slug":"Browserbase","company":"Browserbase","enabled":true},
+  {"provider":"ashby","slug":"fireworks","company":"Fireworks AI","enabled":true},
+  {"provider":"greenhouse","slug":"togetherai","company":"Together AI","enabled":true},
+  {"provider":"ashby","slug":"anyscale","company":"Anyscale","enabled":true},
+  {"provider":"ashby","slug":"cognition","company":"Cognition","enabled":true},
+  {"provider":"ashby","slug":"replit","company":"Replit","enabled":true},
+  {"provider":"ashby","slug":"langfuse","company":"Langfuse","enabled":true}
+]

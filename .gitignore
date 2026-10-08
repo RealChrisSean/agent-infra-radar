@@ -1,0 +1,45 @@
+# Private runtime state
+/data/
+/inbox/
+/seed.json
+/application-update.json
+/progress-update.json
+/schedule-active.json
+/last-scheduled.json
+*.sqlite*
+*.db
+*.db-*
+*.log
+*.lock
+
+# Local credentials and environment
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+.netrc
+
+# Generated files and local exports
+__pycache__/
+*.py[cod]
+.venv/
+node_modules/
+coverage/
+htmlcov/
+.pytest_cache/
+playwright-report/
+test-results/
+artifacts/
+screenshots/
+exports/
+dumps/
+*.har
+*.zip
+*.tar
+*.tar.gz
+.DS_Store
+.agents/
+.codex/
